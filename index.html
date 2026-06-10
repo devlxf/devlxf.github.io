@@ -159,51 +159,42 @@
         <span class="name">Dr. Alexander Ferling</span>
     </div>
 
-    <!-- Dreikörper-Simulation -->
-    <div class="sim-wrap">
-        <p id="ThreeBodyProblem-notSupportedMessage" class="ThreeBodyProblem-alert ThreeBodyProblem-isHiddenBlock">Please use a newer browser to see the simulation.</p>
-
-        <div class="ThreeBodyProblem-container isFullScreenWide isUnselectable">
-            <div class="ThreeBodyProblem-sun"><img src="./SIM_3Body/sun.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Sun"></div>
-            <div class="ThreeBodyProblem-earth"><img src="./SIM_3Body/earth.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Earth"></div>
-            <div class="ThreeBodyProblem-jupiter"><img src="./SIM_3Body/jupiter_juno.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Jupiter"></div>
-            <img src="./SIM_3Body/center_of_mass.png" alt="Center of mass" class="ThreeBodyProblem-centerOfMass">
-
-            <canvas class="ThreeBodyProblem-canvas"></canvas>
-
-            <div class="ThreeBodyProblem-hudContainer">
-                <div class="ThreeBodyProblem-hudContainerChild">
-                    <div class="ThreeBodyProblem-leftBottomButtonCantainer">
-                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass1Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 1"><img src="./SIM_3Body/mass_one_icon.png" alt="Mass 1" class="ThreeBodyProblem-leftBottomImage"></a>
-                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass2Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 2"><img src="./SIM_3Body/mass_two_icon.png" alt="Mass 2" class="ThreeBodyProblem-leftBottomImage"></a>
-                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass3Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 3"><img src="./SIM_3Body/mass_three_icon.png" alt="Mass 3" class="ThreeBodyProblem-leftBottomImage"></a>
-                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-speedButton ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Geschwindigkeit"><img src="./SIM_3Body/clock_icon.png" alt="Speed" class="ThreeBodyProblem-leftBottomImage"></a>
-                    </div>
-                    <a class="ThreeBodyProblem-reload ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Reload"><img src="./SIM_3Body/reload_icon.png" alt="Restart" class="ThreeBodyProblem-reloadIcon"></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="ThreeBodyProblem-isTextCentered ThreeBodyProblem-hasTopMarginSmall ThreeBodyProblem-hasNegativeBottomMarginNormal isUnselectable">
-            <span class="ThreeBodyProblem-sliderLabel">0.10</span>
-        </div>
-
-        <div class="SickSlider ThreeBodyProblem-slider isUnselectable">
-            <div class="SickSlider-stripe"></div>
-            <div class="SickSlider-head"></div>
-        </div>
-
-        <div class="ThreeBodyProblem-isTextCentered">
-            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button ThreeBodyProblem-button--isSelected" data-name="FigureEight">Stabile 8</button>
-            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="SunEarthJupiter">Sonne, Erde und Jupiter</button>
-            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="LagrangePoint5">Lagrange-Punkt L5</button>
-            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="Kepler16">Kepler-16</button>
-            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="Chaotic">Chaotische Bewegung</button>
-        </div>
-
-        <p class="ThreeBodyProblem-debugOutput"></p>
+    <!-- Uhr -->
+    <div style="text-align: center; padding-top: 24px;">
+        <button style="pointer-events: none; padding: 28px 48px; min-width: 380px; border: 1px solid #4c708e; background-color: #ffffff; border-radius: 12px; line-height: 1.5; box-shadow: 0 1px 4px rgba(76,112,142,0.2);">
+            <span style="display: block; text-align: center; font-family: Verdana,Arial,Geneva,Helvetica,sans-serif;">
+                <span id="uhrzeit" style="font-size: 44px; line-height: 1.1; font-weight: bold; color: #4c708e; display: block; white-space: nowrap;"></span>
+                <span id="datum" style="font-size: 20px; line-height: 1.3; font-weight: normal; color: #4c708e; display: block; margin-top: 10px; white-space: nowrap;"></span>
+            </span>
+        </button>
     </div>
-    <script src="./SIM_3Body/three-body-problem-simulator_2.js"></script>
+    <script>
+    (function () {
+        function zeigeUhrzeit() {
+            var jetzt = new Date();
+            // Europe/Berlin: stellt automatisch zwischen Winter- (CET) und Sommerzeit (CEST) um.
+            var zeit = jetzt.toLocaleTimeString('de-DE', {
+                timeZone: 'Europe/Berlin',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            var datum = jetzt.toLocaleDateString('de-DE', {
+                timeZone: 'Europe/Berlin',
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+            var elZeit = document.getElementById('uhrzeit');
+            var elDatum = document.getElementById('datum');
+            if (elZeit) { elZeit.textContent = zeit + ' Uhr'; }
+            if (elDatum) { elDatum.textContent = datum; }
+        }
+        zeigeUhrzeit();
+        setInterval(zeigeUhrzeit, 1000);
+    })();
+    </script>
 
     <!-- Apps -->
     <div class="apps-section">
