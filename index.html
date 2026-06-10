@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="shortcut icon" href="html-assets/favicon.png" type="image/vnd.microsoft.icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <title>Dr. Alexander Ferling</title>
+    <!-- Styles der Dreikörper-Simulation -->
+    <link href="./SIM_3Body/styles_startseite.css" rel="stylesheet" media="screen">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Arial, Geneva, Helvetica, sans-serif;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* Blaue Kopfleiste (bleibt beim Scrollen oben) */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #4c708e;
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0 24px 8px 0;
+        }
+        .site-header .name {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 22px;
+            font-family: Verdana, Arial, Geneva, Helvetica, sans-serif;
+        }
+
+        /* Simulation: volle Breite, skaliert mit dem Fenster / Zoom */
+        .sim-wrap {
+            width: 100%;
+            overflow: hidden;
+        }
+        .sim-wrap .ThreeBodyProblem-container { width: 100%; position: relative; }
+        /* Canvas absolut an den Container-Ursprung binden, damit die Pfade
+           (in Canvas-Koordinaten) und die Himmelskörper (absolut zum Container
+           positioniert) exakt denselben Nullpunkt verwenden. Sonst sitzen die
+           Planeten leicht neben der Spitze ihrer Bahn. */
+        .sim-wrap .ThreeBodyProblem-canvas { width: 100%; position: absolute; top: 0; left: 0; }
+
+        /* Apps-Kasten */
+        .apps-section {
+            background-color: #edf0f3;
+            border: 1px solid #4c708e;
+            padding: 15px;
+            margin: 24px 16px;
+            border-radius: 8px;
+        }
+        .apps-section > h2 {
+            color: #4c708e;
+            border-bottom: 2px solid #4c708e;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .apps-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        .app-card-cell { flex: 1 1 240px; }
+        .app-tile {
+            background-color: #ffffff;
+            border: 1px solid #4c708e;
+            border-radius: 14px;
+            padding: 24px 18px;
+            box-shadow: 0 1px 5px rgba(76,112,142,0.2);
+            min-height: 320px;
+            text-align: center;
+        }
+        .app-tile img { width: 150px; height: 150px; display: inline-block; }
+        .app-tile .app-title { color: #4c708e; font-weight: bold; font-size: 17px; margin-top: 14px; }
+        .app-tile .app-sub { font-size: 13px; color: #4c708e; }
+        .app-btn {
+            display: inline-block;
+            margin: 4px;
+            padding: 9px 16px;
+            background-color: #4c708e;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .app-btn:hover { background-color: #3c5b74; }
+        a.app-link { text-decoration: none; }
+
+        /* Inhaltsbereich */
+        .content { margin: 24px 16px; }
+        .content > h2 {
+            color: #4c708e;
+            border-bottom: 2px solid #4c708e;
+            padding-bottom: 6px;
+        }
+        .themes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-start;
+            margin-top: 16px;
+        }
+        .theme-col { flex: 1 1 360px; min-width: 300px; }
+        .theme-card {
+            background: #ffffff;
+            border: 1px solid #4c708e;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(76,112,142,0.18);
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        .theme-card h3 {
+            margin: 0;
+            background: #4c708e;
+            color: #ffffff;
+            font-size: 15px;
+            padding: 10px 14px;
+            font-weight: bold;
+        }
+        .theme-card ul { list-style: none; margin: 0; padding: 6px 0; }
+        .theme-card li { margin: 0; }
+        .theme-card li a {
+            display: block;
+            padding: 8px 16px;
+            color: #4c708e;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.4;
+            border-left: 3px solid transparent;
+            transition: background .12s;
+        }
+        .theme-card li a:hover { background: #edf0f3; border-left: 3px solid #4c708e; }
+        .theme-card li + li a { border-top: 1px solid #eef2f5; }
+
+        /* Blaue Fußleiste */
+        .site-footer {
+            background-color: #4c708e;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kopf -->
+    <div class="site-header">
+        <span class="name">Dr. Alexander Ferling</span>
+    </div>
+
+    <!-- Dreikörper-Simulation -->
+    <div class="sim-wrap">
+        <p id="ThreeBodyProblem-notSupportedMessage" class="ThreeBodyProblem-alert ThreeBodyProblem-isHiddenBlock">Please use a newer browser to see the simulation.</p>
+
+        <div class="ThreeBodyProblem-container isFullScreenWide isUnselectable">
+            <div class="ThreeBodyProblem-sun"><img src="./SIM_3Body/sun.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Sun"></div>
+            <div class="ThreeBodyProblem-earth"><img src="./SIM_3Body/earth.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Earth"></div>
+            <div class="ThreeBodyProblem-jupiter"><img src="./SIM_3Body/jupiter_juno.png" class="ThreeBodyProblem-spin ThreeBodyProblem-bodyImage" alt="Jupiter"></div>
+            <img src="./SIM_3Body/center_of_mass.png" alt="Center of mass" class="ThreeBodyProblem-centerOfMass">
+
+            <canvas class="ThreeBodyProblem-canvas"></canvas>
+
+            <div class="ThreeBodyProblem-hudContainer">
+                <div class="ThreeBodyProblem-hudContainerChild">
+                    <div class="ThreeBodyProblem-leftBottomButtonCantainer">
+                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass1Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 1"><img src="./SIM_3Body/mass_one_icon.png" alt="Mass 1" class="ThreeBodyProblem-leftBottomImage"></a>
+                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass2Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 2"><img src="./SIM_3Body/mass_two_icon.png" alt="Mass 2" class="ThreeBodyProblem-leftBottomImage"></a>
+                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-mass3Button ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Masse 3"><img src="./SIM_3Body/mass_three_icon.png" alt="Mass 3" class="ThreeBodyProblem-leftBottomImage"></a>
+                        <a class="ThreeBodyProblem-leftBottomButton ThreeBodyProblem-speedButton ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Geschwindigkeit"><img src="./SIM_3Body/clock_icon.png" alt="Speed" class="ThreeBodyProblem-leftBottomImage"></a>
+                    </div>
+                    <a class="ThreeBodyProblem-reload ThreeBodyProblem-doesChangeOpacityOnHover" href="#" title="Reload"><img src="./SIM_3Body/reload_icon.png" alt="Restart" class="ThreeBodyProblem-reloadIcon"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ThreeBodyProblem-isTextCentered ThreeBodyProblem-hasTopMarginSmall ThreeBodyProblem-hasNegativeBottomMarginNormal isUnselectable">
+            <span class="ThreeBodyProblem-sliderLabel">0.10</span>
+        </div>
+
+        <div class="SickSlider ThreeBodyProblem-slider isUnselectable">
+            <div class="SickSlider-stripe"></div>
+            <div class="SickSlider-head"></div>
+        </div>
+
+        <div class="ThreeBodyProblem-isTextCentered">
+            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button ThreeBodyProblem-button--isSelected" data-name="FigureEight">Stabile 8</button>
+            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="SunEarthJupiter">Sonne, Erde und Jupiter</button>
+            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="LagrangePoint5">Lagrange-Punkt L5</button>
+            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="Kepler16">Kepler-16</button>
+            <button class="ThreeBodyProblem-preset ThreeBodyProblem-button" data-name="Chaotic">Chaotische Bewegung</button>
+        </div>
+
+        <p class="ThreeBodyProblem-debugOutput"></p>
+    </div>
+    <script src="./SIM_3Body/three-body-problem-simulator_2.js"></script>
+
+    <!-- Apps -->
+    <div class="apps-section">
+        <h2>Apps</h2>
+        <div class="apps-grid">
+            <!-- Schultaschenrechner -->
+            <div class="app-card-cell">
+                <div class="app-tile">
+                    <a href="https://devlxf.github.io/taschenrechner/" target="_blank" title="Taschenrechner (Web-Version) öffnen">
+                        <img src="./html-assets/Schultaschenrechner.svg" alt="Schultaschenrechner">
+                    </a>
+                    <div class="app-title">Taschenrechner</div>
+                    <div class="app-sub" style="margin-bottom: 14px;">Web-Version</div>
+                    <div><a class="app-btn" href="https://ts.heid-tech.de/~Ferling/Executables/Taschenrechner.apk" target="_blank">Android herunterladen</a></div>
+                    <div><a class="app-btn" href="https://ts.heid-tech.de/~Ferling/Executables/Taschenrechner.exe" target="_blank">Windows herunterladen</a></div>
+                </div>
+            </div>
+
+            <!-- PhysikApps -->
+            <div class="app-card-cell">
+                <a class="app-link" href="https://devlxf.github.io/physikapps/" target="_blank" title="PhysikApps öffnen">
+                    <div class="app-tile">
+                        <img src="./html-assets/PhysikApps.svg" alt="PhysikApps">
+                        <div class="app-title">PhysikApps</div>
+                        <div class="app-sub">Interaktive Lernplattform</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PhysikApps Simulationen -->
+            <div class="app-card-cell">
+                <a class="app-link" href="https://devlxf.github.io/physikapps-simulationen/" target="_blank" title="PhysikApps Simulationen öffnen">
+                    <div class="app-tile">
+                        <img src="./html-assets/PhysikApps-Simulationen.svg" alt="PhysikApps Simulationen">
+                        <div class="app-title">PhysikApps Simulationen</div>
+                        <div class="app-sub">Physiksimulationen</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inhalt -->
+    <div class="content">
+        <h2>Weitere Themen</h2>
+        <div class="themes">
+            <div class="theme-col">
+                <div class="theme-card">
+                    <h3>Unterrichtsdokumentation</h3>
+                    <ul>
+                        <li><a href="./Files/Unterrichtsdokumentation.pdf" target="_blank">Binnendifferenzierung in der Eingangsklasse des technischen Gymnasiums mit Hilfe moderner Medien</a></li>
+                    </ul>
+                </div>
+                <div class="theme-card">
+                    <h3>Apps im Google Play Store</h3>
+                    <ul>
+                        <li><a href="https://play.google.com/store/apps/dev?id=7087839168759673845" target="_blank">Learning Apps zur Physik</a></li>
+                    </ul>
+                </div>
+                <div class="theme-card">
+                    <h3>Doktorarbeit</h3>
+                    <ul>
+                        <li><a href="./Files/diss_ferling.pdf" target="_top">Numerische Methoden zur Erforschung einer N=1 Super Yang-Mills-Theorie mit SU(2) und SU(3) Wilson Fermionen</a></li>
+                    </ul>
+                </div>
+                <div class="theme-card">
+                    <h3>Diplomarbeit</h3>
+                    <ul>
+                        <li><a href="./Files/ferling_diplom.pdf" target="_top">Monte-Carlo-Simulation eines repulsiven Instanton-Gases</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="theme-col">
+                <div class="theme-card">
+                    <h3>Publikationen</h3>
+                    <ul>
+                        <li><a href="https://pubmed.ncbi.nlm.nih.gov/32457245/" target="_blank">2020: Conidial Melanin of the Human-Pathogenic Fungus Aspergillus fumigatus Disrupts Cell Autonomous Defenses in Amoebae</a></li>
+                        <li><a href="http://arxiv.org/abs/1003.2073" target="_blank">2010: Simulation of 4d N=1 supersymmetric Yang-Mills theory with Symanzik improved gauge action and stout smearing</a></li>
+                        <li><a href="http://www.amazon.de/Supersymmetrie-auf-dem-Gitter-Yang-Mills-Theorie/dp/3838110021/ref=sr_1_2?ie=UTF8&amp;s=books&amp;qid=1270497811&amp;sr=8-2" target="_blank">2009: Supersymmetrie auf dem Gitter: Numerische Methoden zur Erforschung einer Super Yang-Mills-Theorie mit Wilson Fermionen (Fachbuch)</a></li>
+                        <li><a href="http://miami.uni-muenster.de/servlets/DocumentServlet?id=4844&amp;XSL.H_main=S_GLOBAL&amp;XSL.H_searchId=searchId" target="_blank">2009: Numerische Methoden zur Erforschung einer N = 1 Super Yang-Mills-Theorie mit SU(2)c und SU(3)c Wilson Fermionen</a></li>
+                        <li><a href="http://arxiv.org/abs/0911.0595" target="_blank">2009: Simulations of supersymmetric Yang-Mills theory</a></li>
+                        <li><a href="http://arxiv.org/abs/0811.1964" target="_blank">2008: Dynamical simulation of lattice 4d N=1 SYM</a></li>
+                        <li><a href="http://arxiv.org/abs/0810.0144" target="_blank">2008: Spectrum of 4d N=1 SYM on the lattice with light dynamical Wilson gluinos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fuß -->
+    <div class="site-footer">
+        Dr. Alexander Ferling
+    </div>
+</body>
+</html>
