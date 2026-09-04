@@ -1,0 +1,56 @@
+.print { display : none }
+.bg_teaserprint { display : none }
+body  { background-color: white }
+.kopf1  { background-color: #4c708e; border-bottom: 1px solid #c9d4dd }
+.kopf2          { background: url(motiv_startseite.jpg) repeat 0px 0px }
+.kopf3   { background-color: #4c708e; border-top: 1px solid #c9d4dd }
+.navx  { }
+.nav1  { background-color: #b1c558; font-family: Verdana, Arial, Geneva, Helvetica; font-size: 12px; border-right: 1px solid white }
+.nav2  { background-color: #b1c558 }  
+.nav3  { background-color: #b1c558 }
+.nav4  { background-color: #b1c558 }
+.nav5  { background-color: #b1c558 }
+.typoheadbox    { color: #8b0000; font-weight: bold; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; letter-spacing: 1px }
+.typominitext     { color: black; font-size: 10px; line-height: 13px; font-family: Verdana, Arial, Geneva, Helvetica }
+.typotext      { font-size: 11px; line-height: 16px; font-family: Verdana, Arial, Geneva, Helvetica }
+.bodytext      { font-size: 12px; line-height: 16px; font-family: Verdana, Arial, Geneva, Helvetica }
+.typobold { font-weight: bold }
+.typowhite { color: white }
+.formtextfield      { color: black; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; border: solid 1px #4c708e; height: 15px }
+.formpulldown { color: #3f5e77; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; border: solid 1px #4c708e; }
+.formlistenfeld { color: #3f5e77; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; border: solid 1px #4c708e; }
+.formtextarea { color: black; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; border: solid 1px #4c708e; }
+.formsysbutton    { color: white; font-weight: bold; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; background-color: #4c708e; border-style: solid; border-width: 1px; border-color: #608db3 #000 #000 #608db3; height: 15px }
+a  { color: #3f5e77; text-decoration: none }
+a:hover { color: #4c708e; text-decoration: underline }
+.A { background-color: white }
+.B { background-color: #4c708e }
+.C   { background-color: #c9d4dd; border-bottom: 1px dotted #4c708e }
+.D { background-color: white }
+.E   { background-color: #edf0f3; border-right: 1px dotted #4c708e; border-left: 1px dotted #4c708e }
+.F   { background-color: white }
+.G { background-color: white }
+.H { background-color: #4c708e }
+.I { background-color: white }
+.J { background-color: white }
+.K  { background-color: #edf0f3; border-right: 1px dotted #4c708e; border-left: 1px dotted #4c708e }
+.L { background-color: white }
+.M { background-color: #e4e9ee }
+h1 { font-weight: bold; font-size: 15px; line-height: 18px; font-family: Verdana, Arial, Geneva, Helvetica }
+h2 { font-weight: bold; font-size: 13px; line-height: 15px; font-family: Verdana, Arial, Geneva, Helvetica }
+h3 { font-weight: bold; font-size: 11px; line-height: 13px; font-family: Verdana, Arial, Geneva, Helvetica }
+h4  { color: #8b0000; font-weight: bold; font-size: 11px; font-family: Verdana, Arial, Geneva, Helvetica; letter-spacing: 1px; margin-bottom: -5px; border-bottom: 1px solid #8b0000 }
+.bg_teaser   { border-bottom: 1px solid #a5b7c6 }
+.bg_teaserbild   { border-bottom: 1px solid #a5b7c6 }
+ul { font-size: 12px; line-height: 16px; font-family: Verdana, Arial, Geneva, Helvetica; list-style-type: square; list-style-position: outside }
+ol { font-size: 11px; line-height: 16px; font-family: Verdana, Arial, Geneva, Helvetica; list-style-type: decimal; list-style-position: outside }
+li { font-size: 12px; line-height: 16px; font-family: Verdana, Arial, Geneva, Helvetica; margin-bottom: 3px }
+hr { color: #4C708E; height: 1px }
+.tab1 { background-color: #4C708E }
+.tab2 { background-color: #819BB0 }
+.tab3 { background-color: #A5B7C6 }
+.tab4 { background-color: #C9D4DD }
+.tab5 { background-color: #EDF0F3 }
+
+
+
