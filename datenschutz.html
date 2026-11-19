@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link rel="shortcut icon" href="html-assets/favicon.png" type="image/vnd.microsoft.icon">
+    <title>Datenschutzerkl&auml;rung &ndash; PhysikApps (Dr. Alexander Ferling)</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Arial, Geneva, Helvetica, sans-serif;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* Blaue Kopfleiste (bleibt beim Scrollen oben) */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: #4c708e;
+            height: 80px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 0 24px 8px 0;
+        }
+        .site-header .name {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        /* Inhaltsbereich */
+        .content {
+            margin: 24px auto;
+            padding: 0 16px;
+            max-width: 900px;
+        }
+        .content > h1 {
+            color: #4c708e;
+            border-bottom: 2px solid #4c708e;
+            padding-bottom: 6px;
+            font-size: 26px;
+            margin-top: 8px;
+        }
+
+        /* Hervorgehobener Kasten mit der Kernaussage */
+        .hinweis {
+            background-color: #edf0f3;
+            border: 1px solid #4c708e;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin: 20px 0 28px 0;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #4c708e;
+            font-weight: bold;
+        }
+
+        /* Karten wie auf der Startseite */
+        .karte {
+            background: #ffffff;
+            border: 1px solid #4c708e;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(76,112,142,0.18);
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        .karte h2 {
+            margin: 0;
+            background: #4c708e;
+            color: #ffffff;
+            font-size: 15px;
+            padding: 10px 14px;
+            font-weight: bold;
+        }
+        .karte .text {
+            padding: 14px 18px;
+            font-size: 14px;
+            line-height: 1.65;
+        }
+        .karte .text p { margin: 0 0 12px 0; }
+        .karte .text p:last-child { margin-bottom: 0; }
+        .karte .text ul { margin: 0 0 12px 0; padding-left: 22px; }
+        .karte .text li { margin-bottom: 6px; }
+        .karte .text a { color: #4c708e; }
+        .karte .text code { font-size: 13px; color: #4c708e; }
+
+        address {
+            font-style: normal;
+            line-height: 1.7;
+        }
+
+        .stand {
+            font-size: 12px;
+            color: #6b7b88;
+            margin: 24px 0 8px 0;
+        }
+        .zurueck {
+            display: inline-block;
+            margin: 4px 0 20px 0;
+            padding: 9px 16px;
+            background-color: #4c708e;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .zurueck:hover { background-color: #3c5b74; }
+
+        /* Blaue Fußleiste */
+        .site-footer {
+            background-color: #4c708e;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kopf -->
+    <div class="site-header">
+        <span class="name">Dr. Alexander Ferling</span>
+    </div>
+
+    <div class="content">
+        <h1>Datenschutzerkl&auml;rung f&uuml;r die Apps von PhysikApps</h1>
+
+        <div class="hinweis">
+            Diese Datenschutzerkl&auml;rung gilt f&uuml;r alle Apps, die der Entwickler
+            &bdquo;PhysikApps&ldquo; (Dr. Alexander Ferling) bei Google Play anbietet,
+            f&uuml;r deren Web- und Windows-Fassungen sowie f&uuml;r diese Internetseite.
+            Die Apps erheben keine personenbezogenen Daten und &uuml;bermitteln keine Daten
+            an den Entwickler oder an Dritte.
+        </div>
+
+        <div class="karte">
+            <h2>Entwickler und Verantwortlicher</h2>
+            <div class="text">
+                <p>Name des Entwicklers bei Google Play: <strong>PhysikApps</strong></p>
+                <p>Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO):</p>
+                <address>
+                    Dr. Alexander Ferling (PhysikApps)<br>
+                    Lichtensteinstr. 11<br>
+                    89518 Heidenheim an der Brenz<br>
+                    Deutschland<br>
+                    E-Mail: mail&#160;[at]&#160;alexander-ferling.de
+                </address>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>F&uuml;r welche Apps diese Erkl&auml;rung gilt</h2>
+            <div class="text">
+                <ul>
+                    <li><strong>PhysikApps &ndash; Aufgaben</strong> (Paketname <code>com.alexanderferling.physikapps</code>)
+                        &ndash; Physikaufgaben mit Hilfestellungen und Musterl&ouml;sungen</li>
+                    <li><strong>PhysikApps &ndash; Simulationen</strong> (Paketname <code>com.alexanderferling.neosim</code>)
+                        &ndash; interaktive Physiksimulationen</li>
+                    <li><strong>PhysikApps &ndash; Taschenrechner</strong> (Paketname <code>com.alexanderferling.taschenrechner</code>)
+                        &ndash; wissenschaftlicher Schultaschenrechner</li>
+                    <li>alle weiteren Apps des Entwicklers PhysikApps bei Google Play, etwa die Energie-Quiz-App</li>
+                </ul>
+                <p>
+                    Sie gilt ebenso f&uuml;r die Fassungen dieser Apps im Browser
+                    (www.alexander-ferling.de/physikapps, /physikapps-simulationen, /taschenrechner)
+                    und f&uuml;r die Windows-Programme, die auf dieser Seite angeboten werden.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Welche Daten die Apps erheben</h2>
+            <div class="text">
+                <p>
+                    <strong>Keine.</strong> Die Apps rechnen vollst&auml;ndig auf Ihrem eigenen Ger&auml;t.
+                    Sie erheben keine personenbezogenen Daten, senden keine Eingaben, keine Ergebnisse
+                    und keine Nutzungsdaten an den Entwickler oder an Dritte und geben keine Daten weiter.
+                </p>
+                <ul>
+                    <li>kein Benutzerkonto und keine Anmeldung,</li>
+                    <li>keine Werbung,</li>
+                    <li>keine Analyse-, Statistik- oder Tracking-Werkzeuge und keine Software von Drittanbietern, die Daten sammelt,</li>
+                    <li>kein Zugriff auf Kamera, Mikrofon, Standort, Kontakte, Fotos oder Dateien,</li>
+                    <li>keine K&auml;ufe in der App.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Was nur auf Ihrem Ger&auml;t gespeichert wird</h2>
+            <div class="text">
+                <p>Damit die Apps sich Ihren Stand merken, speichern einige von ihnen Angaben ausschlie&szlig;lich lokal auf Ihrem Ger&auml;t:</p>
+                <ul>
+                    <li><strong>PhysikApps &ndash; Aufgaben:</strong> erreichte Punkte, markierte Aufgaben und die gew&auml;hlte Schulart,</li>
+                    <li><strong>PhysikApps &ndash; Taschenrechner:</strong> Einstellungen, Speicherinhalte und die zuletzt eingegebenen Rechnungen,</li>
+                    <li><strong>PhysikApps &ndash; Simulationen:</strong> keine dauerhaft gespeicherten Angaben.</li>
+                </ul>
+                <p>
+                    Diese Angaben verlassen Ihr Ger&auml;t nie und sind nur Ihnen zug&auml;nglich. Sie werden
+                    gel&ouml;scht, wenn Sie die App deinstallieren oder ihre Daten in den Einstellungen des
+                    Ger&auml;ts l&ouml;schen (im Browser: die Websitedaten l&ouml;schen). In der Aufgaben-App lassen
+                    sich die Punkte au&szlig;erdem &uuml;ber das Zahnrad zur&uuml;cksetzen.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Google Play</h2>
+            <div class="text">
+                <p>
+                    Die Android-Apps werden &uuml;ber Google Play bereitgestellt. Beim Herunterladen und
+                    Aktualisieren verarbeitet Google Daten nach seiner eigenen
+                    <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">Datenschutzerkl&auml;rung</a>.
+                    Der Entwickler erh&auml;lt von Google lediglich zusammengefasste, anonyme Zahlen
+                    (zum Beispiel die Zahl der Installationen) und hat keinen Zugriff auf Daten
+                    einzelner Nutzerinnen und Nutzer.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Web-Fassungen und diese Internetseite</h2>
+            <div class="text">
+                <p>
+                    Diese Seite und die Web-Fassungen der Apps werden bei GitHub Pages abgelegt (GitHub, Inc.,
+                    88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Wie bei jedem Abruf einer
+                    Internetseite &uuml;bermittelt Ihr Browser dabei technisch notwendige Angaben an den Server,
+                    etwa Ihre IP-Adresse. Diese Verarbeitung liegt beim Anbieter und ist f&uuml;r die &Uuml;bertragung
+                    unvermeidbar; der Entwickler erh&auml;lt davon keine Protokolle und wertet nichts aus. N&auml;heres
+                    beschreibt GitHub im
+                    <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.
+                </p>
+                <p>
+                    Die Seite setzt keine Cookies, z&auml;hlt keine Besucher und l&auml;dt keine Schriften oder Skripte
+                    von fremden Servern. Damit die Web-Fassungen auch ohne Internetverbindung laufen, legt Ihr
+                    Browser die Programmdateien in seinem eigenen Zwischenspeicher ab; dabei werden keine
+                    Angaben &uuml;ber Sie gespeichert.
+                </p>
+                <p>
+                    Verweise auf fremde Internetseiten (etwa Google Play oder GitHub) &ouml;ffnen sich nur, wenn Sie
+                    sie antippen. Dort gilt die Datenschutzerkl&auml;rung des jeweiligen Anbieters.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Kinder und Jugendliche</h2>
+            <div class="text">
+                <p>
+                    Die Apps sind f&uuml;r den Physik- und Mathematikunterricht gedacht und werden auch von
+                    Sch&uuml;lerinnen und Sch&uuml;lern genutzt. Weil die Apps keine Daten erheben, werden auch von
+                    Kindern und Jugendlichen keine personenbezogenen Daten erhoben.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte">
+            <h2>Ihre Rechte</h2>
+            <div class="text">
+                <p>
+                    Nach der Datenschutz-Grundverordnung haben Sie das Recht auf Auskunft,
+                    Berichtigung, L&ouml;schung und Einschr&auml;nkung der Verarbeitung sowie das
+                    Recht auf Daten&uuml;bertragbarkeit und Widerspruch. Da der Entwickler keine Daten von
+                    Ihnen erhebt oder speichert, gibt es allerdings nichts, worauf sich eine
+                    Auskunft oder L&ouml;schung beziehen k&ouml;nnte. Fragen beantwortet der Entwickler gern
+                    unter der oben genannten Anschrift.
+                </p>
+                <p>
+                    Unabh&auml;ngig davon steht Ihnen ein Beschwerderecht bei einer
+                    Datenschutz-Aufsichtsbeh&ouml;rde zu. Zust&auml;ndig ist der Landesbeauftragte
+                    f&uuml;r den Datenschutz und die Informationsfreiheit Baden-W&uuml;rttemberg,
+                    Lautenschlagerstra&szlig;e 20, 70173 Stuttgart.
+                </p>
+            </div>
+        </div>
+
+        <div class="karte" lang="en">
+            <h2>Summary in English</h2>
+            <div class="text">
+                <p>
+                    This privacy policy applies to all apps published on Google Play by the developer
+                    <strong>PhysikApps</strong> (Dr. Alexander Ferling, Lichtensteinstr. 11, 89518 Heidenheim,
+                    Germany), in particular <strong>PhysikApps &ndash; Aufgaben</strong>
+                    (com.alexanderferling.physikapps), <strong>PhysikApps &ndash; Simulationen</strong>
+                    (com.alexanderferling.neosim) and <strong>PhysikApps &ndash; Taschenrechner</strong>
+                    (com.alexanderferling.taschenrechner), and to their web and Windows versions.
+                </p>
+                <p>
+                    The apps do not collect, transmit or share any personal data. They contain no ads, no
+                    analytics and no tracking, require no account and access no camera, microphone, location,
+                    contacts or files. Progress and settings (for example points in PhysikApps &ndash; Aufgaben)
+                    are stored only locally on the device and are deleted when the app is uninstalled.
+                    Contact: mail&#160;[at]&#160;alexander-ferling.de.
+                </p>
+            </div>
+        </div>
+
+        <p class="stand">Stand: 19. November 2026</p>
+        <a class="zurueck" href="./index.html">Zur&uuml;ck zur Startseite</a>
+    </div>
+
+    <!-- Fuß -->
+    <div class="site-footer">
+        Dr. Alexander Ferling &middot; PhysikApps
+    </div>
+</body>
+</html>
